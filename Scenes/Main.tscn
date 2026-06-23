@@ -1,0 +1,282 @@
+[gd_scene format=3 uid="uid://bwj2vi13esafb"]
+
+[ext_resource type="Script" uid="uid://c8jgw3o5v3lal" path="res://Scripts/Main.gd" id="1_r150o"]
+[ext_resource type="Theme" uid="uid://cajti85htyyms" path="res://DefaultTheme.tres" id="2_idj7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r150o"]
+bg_color = Color(0.11764706, 0.16078432, 0.23137255, 1)
+border_width_top = 16
+border_width_bottom = 16
+border_color = Color(0.07058824, 0.09411765, 0.14901961, 1)
+border_blend = true
+
+[sub_resource type="Gradient" id="Gradient_r150o"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_idj7w"]
+gradient = SubResource("Gradient_r150o")
+width = 256
+height = 32
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_idj7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idj7w"]
+bg_color = Color(0.2, 0.25490198, 0.33333334, 1)
+
+[node name="Main" type="Node" unique_id=2065069144]
+script = ExtResource("1_r150o")
+
+[node name="UI" type="Node" parent="." unique_id=375045428]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1841599709]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="PanelContainer" parent="UI/VBoxContainer" unique_id=610772042]
+layout_mode = 2
+theme = ExtResource("2_idj7w")
+theme_override_styles/panel = SubResource("StyleBoxFlat_r150o")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/TopBar" unique_id=245091910]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StatsArea" type="HBoxContainer" parent="UI/VBoxContainer/TopBar/MarginContainer" unique_id=1768252544]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/TopBar/MarginContainer/StatsArea" unique_id=1611743034]
+layout_mode = 2
+text = "$:"
+
+[node name="CurrencyAmountLabel" type="Label" parent="UI/VBoxContainer/TopBar/MarginContainer/StatsArea" unique_id=1771707394]
+layout_mode = 2
+text = "0"
+
+[node name="GoalArea" type="HBoxContainer" parent="UI/VBoxContainer/TopBar/MarginContainer" unique_id=1851738922]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/VBoxContainer/TopBar/MarginContainer/GoalArea" unique_id=1849856457]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 46.0
+nine_patch_stretch = true
+stretch_margin_left = 250
+stretch_margin_top = 32
+texture_under = SubResource("GradientTexture2D_idj7w")
+texture_progress = SubResource("GradientTexture2D_idj7w")
+tint_under = Color(0.21772417, 0.18087971, 0.36823383, 1)
+tint_progress = Color(0.3520735, 0.26827478, 0.56836826, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TopBar/MarginContainer/GoalArea/TextureProgressBar" unique_id=1408314492]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GoalCurrencyLabel" type="Label" parent="UI/VBoxContainer/TopBar/MarginContainer/GoalArea/TextureProgressBar/HBoxContainer" unique_id=275162947]
+layout_mode = 2
+text = "$0"
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/TopBar/MarginContainer/GoalArea/TextureProgressBar/HBoxContainer" unique_id=1424782437]
+layout_mode = 2
+text = "- Left To Offer"
+
+[node name="GameIconArea" type="HBoxContainer" parent="UI/VBoxContainer/TopBar/MarginContainer" unique_id=945913368]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="PrestigeButton" type="Button" parent="UI/VBoxContainer/TopBar/MarginContainer/GameIconArea" unique_id=362663855]
+layout_mode = 2
+text = "Prestige"
+
+[node name="SettingsButton" type="Button" parent="UI/VBoxContainer/TopBar/MarginContainer/GameIconArea" unique_id=1157656088]
+layout_mode = 2
+text = "Settings"
+
+[node name="SaveButton" type="Button" parent="UI/VBoxContainer/TopBar/MarginContainer/GameIconArea" unique_id=906642535]
+layout_mode = 2
+text = "Save
+"
+
+[node name="FullScreenButton" type="Button" parent="UI/VBoxContainer/TopBar/MarginContainer/GameIconArea" unique_id=66354214]
+layout_mode = 2
+text = "F"
+
+[node name="LeftPanel" type="PanelContainer" parent="UI/VBoxContainer" unique_id=1106670604]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_idj7w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/LeftPanel" unique_id=2061057664]
+layout_mode = 2
+
+[node name="BaitShopPanel" type="PanelContainer" parent="UI/VBoxContainer/LeftPanel/VBoxContainer" unique_id=1779576952]
+custom_minimum_size = Vector2(425.14, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_idj7w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/LeftPanel/VBoxContainer/BaitShopPanel" unique_id=229651109]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UI/VBoxContainer/LeftPanel/VBoxContainer/BaitShopPanel/VBoxContainer" unique_id=1076082426]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Bait Shop"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/LeftPanel/VBoxContainer/BaitShopPanel/VBoxContainer" unique_id=1443309685]
+layout_mode = 2
+
+[node name="BaitShopContainer" type="VBoxContainer" parent="UI/VBoxContainer/LeftPanel/VBoxContainer/BaitShopPanel/VBoxContainer/ScrollContainer" unique_id=1081857268]
+layout_mode = 2
+
+[node name="BaitBucketPanel" type="PanelContainer" parent="UI/VBoxContainer/LeftPanel/VBoxContainer" unique_id=115431389]
+custom_minimum_size = Vector2(425.14, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_idj7w")
+
+[node name="BottomBar" type="PanelContainer" parent="UI/VBoxContainer" unique_id=1199041925]
+layout_mode = 2
+theme = ExtResource("2_idj7w")
+theme_override_styles/panel = SubResource("StyleBoxFlat_r150o")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/BottomBar" unique_id=1377675981]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StatsArea" type="HBoxContainer" parent="UI/VBoxContainer/BottomBar/MarginContainer" unique_id=2142394929]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/BottomBar/MarginContainer/StatsArea" unique_id=885988921]
+layout_mode = 2
+text = "$:"
+
+[node name="CurrencyAmountLabel" type="Label" parent="UI/VBoxContainer/BottomBar/MarginContainer/StatsArea" unique_id=204520926]
+layout_mode = 2
+text = "0"
+
+[node name="GoalArea" type="HBoxContainer" parent="UI/VBoxContainer/BottomBar/MarginContainer" unique_id=59975335]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/VBoxContainer/BottomBar/MarginContainer/GoalArea" unique_id=18647009]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 46.0
+nine_patch_stretch = true
+stretch_margin_left = 250
+stretch_margin_top = 32
+texture_under = SubResource("GradientTexture2D_idj7w")
+texture_progress = SubResource("GradientTexture2D_idj7w")
+tint_under = Color(0.21772417, 0.18087971, 0.36823383, 1)
+tint_progress = Color(0.3520735, 0.26827478, 0.56836826, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/BottomBar/MarginContainer/GoalArea/TextureProgressBar" unique_id=1094190811]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GoalCurrencyLabel" type="Label" parent="UI/VBoxContainer/BottomBar/MarginContainer/GoalArea/TextureProgressBar/HBoxContainer" unique_id=465163254]
+layout_mode = 2
+text = "$0"
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/BottomBar/MarginContainer/GoalArea/TextureProgressBar/HBoxContainer" unique_id=592916239]
+layout_mode = 2
+text = "- Left To Offer"
+
+[node name="GameIconArea" type="HBoxContainer" parent="UI/VBoxContainer/BottomBar/MarginContainer" unique_id=1826262300]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="PrestigeButton" type="Button" parent="UI/VBoxContainer/BottomBar/MarginContainer/GameIconArea" unique_id=912767057]
+layout_mode = 2
+text = "Prestige"
+
+[node name="SettingsButton" type="Button" parent="UI/VBoxContainer/BottomBar/MarginContainer/GameIconArea" unique_id=205746236]
+layout_mode = 2
+text = "Settings"
+
+[node name="SaveButton" type="Button" parent="UI/VBoxContainer/BottomBar/MarginContainer/GameIconArea" unique_id=972603073]
+layout_mode = 2
+text = "Save
+"
+
+[node name="FullScreenButton" type="Button" parent="UI/VBoxContainer/BottomBar/MarginContainer/GameIconArea" unique_id=1462306147]
+layout_mode = 2
+text = "F"
+
+[node name="RightPanel" type="VBoxContainer" parent="UI" unique_id=725427078]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.064
+anchor_right = 1.0
+anchor_bottom = 0.93600005
+offset_left = -425.0
+offset_top = -0.12000275
+offset_bottom = 0.11993408
+size_flags_horizontal = 8
+
+[node name="ShoppingPanel" type="PanelContainer" parent="UI/RightPanel" unique_id=437044981]
+custom_minimum_size = Vector2(425.14, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_idj7w")
+
+[node name="TabContainer" type="TabContainer" parent="UI/RightPanel/ShoppingPanel" unique_id=748444161]
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="BaitShop" type="TabBar" parent="UI/RightPanel/ShoppingPanel/TabContainer" unique_id=235399205]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Upgrades" type="TabBar" parent="UI/RightPanel/ShoppingPanel/TabContainer" unique_id=2009303420]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Prestige" type="TabBar" parent="UI/RightPanel/ShoppingPanel/TabContainer" unique_id=991870004]
+visible = false
+layout_mode = 2
+current_tab = 0
+tab_count = 1
+metadata/_tab_index = 2
+
+[node name="TabBar" type="TabBar" parent="UI/RightPanel/ShoppingPanel/TabContainer" unique_id=158395559]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3

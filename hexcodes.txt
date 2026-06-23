@@ -1,0 +1,11 @@
+
+Background: #121826
+Panel: #1E293B
+Secondary Panel: #334155
+Primary Text: #F8FAFC
+Secondary Text: #94A3B8
+Accent: #3B82F6
+Accent Hover: #60A5FA
+Success: #22C55E
+Warning: #F59E0B
+Error: #EF4444
