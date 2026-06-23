@@ -19,7 +19,7 @@
 
 ## 2. Gameplay
 
-Catch fish. Scratch scales. Pray the symbols line up. Reel Rich's core loop is built around the satisfying tension of a scratch-off ticket — except the ticket is a fish, the prize is gold coins, and the house is an eldritch ocean god with an appetite. Prestige unlocks new bait catalogues, escalating the stakes with every run.
+Catch fish. Scratch scales. Pray the symbols line up. Reel Rich's core loop is built around the satisfying tension of a scratch-off ticket, except the ticket is a fish, the prize is gold coins, and the house is an eldritch ocean god with an appetite. Prestige unlocks new bait catalogues, escalating the stakes with every run.
 
 ### Gameplay Loop
 
