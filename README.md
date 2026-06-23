@@ -13,7 +13,7 @@
 
 ## 1. Introduction
 
-**Reel Rich: Scratch & Sinker** Reel Rich: Scratch & Sinker is a darkly comedic semi-idle fishing game about a broke fisherman who makes a deal he can't afford and spends the rest of his lives trying to outlast it. Players fish, gamble, feed an ancient eldritch patron, and die — repeatedly — in pursuit of endless wealth and just one more cast.
+**Reel Rich: Scratch & Sinker** Reel Rich: Scratch & Sinker is a darkly comedic semi-idle fishing game about a broke fisherman who makes a deal he can't afford and spends the rest of his lives trying to outlast it. Players fish, gamble, feed an ancient eldritch patron, and die, repeatedly, in pursuit of endless wealth and just one more cast.
 
 ---
 
