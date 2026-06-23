@@ -19,7 +19,7 @@
 
 ## 2. Gameplay
 
-The fish the player catches are turned into scratch-off tickets by the player's patron. The player buys bait, catches the associated fish, and descales the fish to reveal symbols underneath. If the player wins, the fish explodes into coins and ingredients for the patron to consume. Each prestige level unlocks new Bait Catalogues for the player to buy new, more expensive bait, to catch a bigger prize fish.
+Catch fish. Scratch scales. Pray the symbols line up. Reel Rich's core loop is built around the satisfying tension of a scratch-off ticket — except the ticket is a fish, the prize is gold coins, and the house is an eldritch ocean god with an appetite. Prestige unlocks new bait catalogues, escalating the stakes with every run.
 
 ### Gameplay Loop
 
