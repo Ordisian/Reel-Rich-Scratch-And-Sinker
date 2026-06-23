@@ -13,7 +13,7 @@
 
 ## 1. Introduction
 
-**Reel Rich: Scratch & Sinker** is a semi-idle fishing game that delves deep into the mind of a fisherman with a terrible gambling addiction who makes a pact with a powerful ocean patron. The player risks sudden death, but in return they receive a way to fuel their gambling addiction and thirst for endless wealth.
+**Reel Rich: Scratch & Sinker** Reel Rich: Scratch & Sinker is a darkly comedic semi-idle fishing game about a broke fisherman who makes a deal he can't afford and spends the rest of his lives trying to outlast it. Players fish, gamble, feed an ancient eldritch patron, and die — repeatedly — in pursuit of endless wealth and just one more cast.
 
 ---
 
@@ -25,27 +25,27 @@ The fish the player catches are turned into scratch-off tickets by the player's 
 
 ```
 Buy Bait
-    ↓
+	↓
 Cast Line
-    ↓
+	↓
 Catch Fish
-    ↓
+	↓
 Scratch Fish
-    ↓
+	↓
 Choose What To Keep
-    ↓
+	↓
 Choose What To Feed Patron
-    ↓
+	↓
 Manage Hunger
-    ↓
+	↓
 Acquire Artifacts
-    ↓
+	↓
 Accept or Reject Patron Deals
-    ↓
+	↓
 Die or Cash Out
-    ↓
+	↓
 Prestige
-    ↓
+	↓
 Repeat
 ```
 
