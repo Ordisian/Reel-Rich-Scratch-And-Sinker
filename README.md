@@ -138,6 +138,7 @@ Artifacts can either:
 
 ### Corruption
 Upon feeding the patron an artifact, the player is offered a choice of three patron deals — permanent for their current life. Each deal has a positive and a negative effect. Examples:
+Upon feeding the patron an artifact, the player is offered a choice of three patron deals, permanent for their current life. Each deal has a positive and a negative effect. Examples:
 
 | Positive | Negative |
 |---|---|
@@ -157,6 +158,7 @@ Each deal is paired with a patron voice line or text.
 ### The Setup
 
 You weren't always this bad at quitting while you were ahead. Once you were just a fisherman — a decent one, even. But the cards called louder than the sea ever did, and somewhere between your third loan and your fifth eviction notice, the sea decided to answer back.
+You weren't always this bad at quitting while you were ahead. Once you were just a fisherman, a decent one, even. But the cards called louder than the sea ever did, and somewhere between your third loan and your fifth eviction notice, the sea decided to answer back.
 
 The night you cast your line with nothing left to lose, something bit. Not a fish. Something older. Something that had been watching the bottom of every bottle and the back of every losing ticket you'd ever held, waiting for the moment you had absolutely nothing left to bargain with.
 
@@ -184,7 +186,11 @@ Nobody knows what it is. Nobody who's met it has had the luxury of writing it do
 
 It is enormous. It is patient. It finds you deeply, deeply amusing.
 
+<<<<<<< HEAD
 It speaks to you like a theater producer watches a one-man show — entertained, a little bored, completely in control. It gave you the power to turn your catches into something worth gambling on not out of generosity, no, but because a well-fed fisherman fishes longer. And the longer you fish, the longer it eats.
+=======
+It speaks to you like a theater producer watches a one-man show — entertained, a little bored, completely in control. It gave you the power to turn your catches into something worth gambling on not out of generosity, no,but because a well-fed fisherman fishes longer. And the longer you fish, the longer it eats.
+>>>>>>> c09607dd1476e21ffe7f8c0e91e4c362e387775e
 
 It will remind you of this. Frequently. Dramatically.
 
