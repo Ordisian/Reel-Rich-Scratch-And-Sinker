@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BaitCatalogue" format=3 uid="uid://bsihj11d0ib2x"]
+
+[ext_resource type="Script" uid="uid://4ri86ej7rxdx" path="res://Scripts/Resources/bait_data.gd" id="1_bxakf"]
+[ext_resource type="Script" uid="uid://brgpmjhmjt86e" path="res://Scripts/Resources/bait_catalogue.gd" id="2_2nts4"]
+
+[resource]
+script = ExtResource("2_2nts4")
+background_color = null
+border_color = null
+metadata/_custom_type_script = "uid://brgpmjhmjt86e"

@@ -1,0 +1,249 @@
+# Reel Rich: Scratch & Sinker
+### GDD Addendum — UI, Systems & Art Direction
+ 
+---
+ 
+## Table of Contents
+1. [Art Direction](#1-art-direction)
+2. [UI Layout](#2-ui-layout)
+3. [Panel System](#3-panel-system)
+4. [Bait & Toss System](#4-bait--toss-system)
+5. [Catch Timing System](#5-catch-timing-system)
+6. [Descaling Screen](#6-descaling-screen)
+7. [Patron Dialogue System](#7-patron-dialogue-system)
+8. [Godot Scene Structure](#8-godot-scene-structure)
+---
+ 
+## 1. Art Direction
+ 
+### Overall Visual Style
+Dark and gritty — weathered wood, rust, deep ocean. Every surface should feel used, worn, and slightly wrong. The world exists somewhere between a rundown fishing dock and something far older and stranger lurking underneath it.
+ 
+### Color Language
+- **Deep ocean blacks and navy** — the water, backgrounds, overlays
+- **Weathered amber and brown** — wood panels, bait bucket, cutting board, UI borders
+- **Rust orange** — accent color for coins, highlights, warm UI elements
+- **Muted teal** — secondary catalogue accents, deep water fish
+- **Dark violet and purple** — patron-related UI, corruption deals, favor currency, spells
+- **Blood red** — hunger meter fill, bobber, loss state
+### Typography
+Sentence case throughout. No all-caps except for short UI labels (HUNGER, LV, XP). Uppercase labels should feel stamped or burned into the surface rather than designed.
+ 
+### Surface Design
+Every panel should feel like a physical object — the bait bucket is a real bucket sliced in half, the cutting board is actual worn wood with grain lines, the bait shop is a storefront with a handwritten sign, not a menu. UI elements are nailed, bolted, or painted onto surfaces rather than floating on them.
+ 
+### The Patron's Visual Language
+The Patron never appears as a body — only as:
+- Golden eyes in clusters beneath the water surface
+- Dark tendrils creeping from the borders of panels as hunger rises
+- His name rendered as `[ ?????? ]` — unreadable glyphs on worn surfaces
+### Tendril System
+As hunger increases past roughly 70%, dark organic tendrils begin creeping inward along the borders of every UI panel. At 90% they should visually intrude on the usable space. The effect should feel like the game itself is being consumed.
+ 
+---
+ 
+## 2. UI Layout
+ 
+### Target Platform
+16:9 desktop only.
+ 
+### Stretch Settings (Godot)
+- Stretch Mode: `canvas_items`
+- Stretch Aspect: `keep`
+- Stretch Scale Mode: `fractional`
+This ensures all text and UI scales proportionally with the window — smaller window means smaller everything, maintaining the intended layout at any size.
+ 
+### Top Bar
+Fixed height bar at the top of the screen. Three regions:
+ 
+**Left:** Wallet (coin display) and Patron's Favor (prestige coin display). Both styled as small inset panels — coin display in amber tones, favor display in purple tones.
+ 
+**Center:** Hunger meter. A horizontal bar with a label. At low hunger the fill is deep red. As hunger climbs the bar should pulse or glow more intensely. The bar is the most critical piece of information in the game and should be visually dominant.
+ 
+**Right:** Cash Out button (styled in muted green, confirming safety), and a menu icon button that opens a centered overlay.
+ 
+### Main Area
+Sits below the top bar and fills all remaining height. Contains three columns in an HBoxContainer: Left Panel, Water Area, Right Panel, separated by drag handles.
+ 
+### Water Area (Center)
+The primary game canvas. Top-down view of dark ocean water. Occasional glowing eye pairs visible beneath the surface at low opacity. The fishing line and active bobbers live here. Event banners slide in from the top right. Patron dialogue appears as a speech bubble anchored to the center-bottom of the water area, with its tail pointing toward the Patron portrait in the right panel.
+ 
+### Overlays
+A CanvasLayer at a high layer index (10+) that sits above everything. Contains:
+- Descale Screen (full screen takeover)
+- Corruption Deal Selector (centered modal, pauses game)
+- Death / Prestige Screen (full scene replacement)
+- Main Menu overlay
+---
+ 
+## 3. Panel System
+ 
+### Left Panel — Tabs
+Two tabs: **Fishing** and **Inventory** (name pending rework).
+ 
+**Fishing Tab contains:**
+ 
+*Bait Shop* — styled as a worn storefront header. Below it, scrollable Bait Catalogues rendered as smooth dropdowns. Each catalogue has its own color identity:
+- Starter Catalogue — amber tones
+- Deep Catalogue — teal tones
+- Abyss Catalogue — purple tones (locked until unlocked via prestige)
+Each catalogue dropdown contains individual bait items. Each bait item shows its name, current level, XP progress bar, and cost. The XP bar uses the catalogue's accent color.
+ 
+*Bait Bucket* — positioned below the bait shop. Rendered as an interior side-view of a real bucket, like it was sliced in half. Visually grimy and used. Each bait purchase causes a bait ball to physically drop into the bucket with light physics. The player drags bait balls out of the bucket to toss them into the water.
+ 
+**Inventory Tab contains:**
+- Fish Cooler: a scrollable 3×n grid holding caught fish, food items, and artifacts
+- Corruption Deal history: a scrollable 3×n grid of active permanent deals for the current life
+### Right Panel
+Always visible, no tabs. Contains two scrollable dropdown sections and a spell tray at the bottom.
+ 
+**Upgrades section** — dropdown groups:
+- *Fishing* — Knife Speed, Catch Size, Knife Size. Each item shows name, current level (e.g. Lv 2 / 10), and cost.
+- *Bait* — Bait Capacity and related upgrades.
+**Gadgets section** — each gadget is its own dropdown:
+- Header shows gadget name
+- Inside: ON/OFF toggle, and a sub-section of gadget-specific upgrades with their own levels and costs
+- Gadget upgrade dropdowns sit inside the gadget dropdown (nested)
+**Spells tray** — fixed at the bottom of the right panel where the Patron portrait was. A 3-column grid of spell slots. Each slot shows a Tabler icon and a short name. Slots glow when the spell is ready to cast. The Patron's speech bubble tail points toward this area when he speaks.
+ 
+### Drag Handles
+Thin (6px wide) vertical strips between the left panel and water area, and between the water area and right panel. Cursor changes to HSize on hover. Dragging resizes the adjacent panel. Each panel has a hard minimum width of 44px — at minimum width a vertical label is visible on the panel border identifying it. Maximum panel width is approximately 280px.
+ 
+The same script handles both drag handles. An exported `resize_direction` integer (1 or -1) and an exported `target_panel` NodePath make each handle instance self-contained and inspector-configurable.
+ 
+---
+ 
+## 4. Bait & Toss System
+ 
+### Overview
+The player drags bait balls out of the bait bucket with the mouse. The bait follows the cursor directly — no arc. When the player releases the mouse button over the water area, the bait is thrown. The velocity and direction of the throw is determined by the speed and direction of the mouse movement at the moment of release.
+ 
+### Bait Ball Visuals
+Small circles (roughly 14px) with a filled center and a colored border. Color varies by bait type — amber/brown for standard worm bait, green for minnow bait, teal for deep catalogue bait. Bait balls sit physically inside the bucket and can be seen resting there.
+ 
+### In-Flight
+The bait follows the mouse during drag. On release it launches in the direction the mouse was moving, following the momentum of the throw. A short white particle trail follows the bait mid-air. A small amount of rotation is applied to the bait ball as it travels. On impact with the water, a splash particle effect fires and ripple rings expand outward.
+ 
+### Multiple Bait
+The player can throw multiple bait into the water before any are caught. Each active bait spawns its own bobber and catch ring system. Managing several bobbers simultaneously is a core mid-game skill.
+ 
+---
+ 
+## 5. Catch Timing System
+ 
+### Overview
+Inspired by osu! hit circles. After a bait splashes, a bobber appears at the impact point. Two rings render around the bobber:
+ 
+**Static catch zone ring** — a fixed, low-opacity grey ring. This is the target the player is aiming to align with.
+ 
+**Pulsing OSU ring** — a second ring that continuously grows and shrinks, oscillating between a minimum and maximum radius. Its color shifts based on proximity to the catch zone:
+- Far from alignment — muted blue
+- Approaching alignment — yellow
+- Near-perfect alignment — gold
+### Catch Result
+The player clicks the bobber when the pulsing ring aligns with the static ring. Result is determined by proximity at the moment of click:
+- **GREAT** — near-perfect alignment, gold feedback text
+- **Good** — acceptable alignment, green feedback text
+- **Miss** — poor alignment or click outside range, red feedback text. Bait is lost.
+### Feel Notes
+The bobber bobs gently on the water surface. The line runs upward from the bobber. The catch rings should feel satisfying to watch pulse — the speed should be fast enough to create tension but not so fast that it feels unfair.
+ 
+---
+ 
+## 6. Descaling Screen
+ 
+### Trigger
+After a successful catch, the player enters the descaling screen. This is a full-screen takeover — all other UI hides. The screen has its own top bar showing the fish species, level, and how many symbols have been revealed.
+ 
+### The Board
+A wide wooden cutting board fills most of the screen. The board surface has visible grain lines running horizontally. Scattered scale particles accumulate on the board surface as the player descales.
+ 
+### The Fish
+A side-view fish rendered in the center of the board. The fish is alive — its eye wanders slowly and randomly while the player works. The fish is covered in overlapping scales that obscure the symbols beneath.
+ 
+### The Knife
+The player holds a knife that follows the mouse cursor. Holding left-click and moving the mouse scrapes scales off the fish. Scales that are removed fall and scatter onto the board surface as small particle debris. The knife has a visible blade and a worn handle.
+ 
+### Symbol Revelation
+Six symbols are tattooed onto the fish's skin beneath the scales. As the knife passes over a region, the scales in that area fall away and the symbol beneath becomes visible, as if it were always there on the skin. Symbols appear to emerge rather than appear — like ink revealing itself.
+ 
+### Win State
+If the revealed symbols meet the win condition (three or more matching symbols), the fish reacts:
+- The fish's eye widens and grows slightly larger
+- The fish shakes left and right rapidly for about half a second
+- The fish disappears and explodes into gold coins that fill the screen
+- A result banner appears: win amount and any artifact found
+### Loss State
+If the symbols do not meet the win condition:
+- The fish shakes briefly
+- The fish explodes into blood and guts
+- A result banner appears noting the loss
+- Crucially: a fish that has been scratched and lost **cannot be fed to the Patron** — the Patron only consumes whole fish or winning fish remains. This creates a meaningful decision before scratching.
+---
+ 
+## 7. Patron Dialogue System
+ 
+### Trigger Points
+The Patron speaks at specific in-game events. Dialogue renders as a speech bubble in the water area, with a tail pointing toward the right panel where the Patron's presence is implied. Each line pauses the game until the player clicks to skip, except for passive notifications which auto-dismiss.
+ 
+### Scripted Dialogue Events
+- **Game start / tutorial begin** — full intro monologue (see Script section of main GDD)
+- **First inventory open** — warning monologue about death
+- **First fish descaled** — satisfied reaction, "Fish." command
+- **Patron hunger warning** — *"You've kept me waiting long enough."* triggers at near-maximum hunger
+- **Corruption deal offered** — theatrical line accompanies each deal card
+- **Player death** — consumed by Patron, transition to prestige screen
+### Passive Notifications
+Short lines that slide in from the top right of the water area (same region as event banners) and auto-dismiss after a few seconds. Used for:
+- Patron requests (*"Bring me a catfish"*)
+- Rare fish event notices
+- Low-urgency commentary
+### Patron Visual Presence
+The Patron has no body. In the right panel, where the upgrade shop ends, a small dark inset shows two amber eyes and the inscription `[ ?????? ]` beneath them. This is the closest thing to a portrait. All speech bubble tails point here.
+ 
+---
+ 
+## 8. Godot Scene Structure
+ 
+### Main Scene Node Tree
+```
+MainScene (Control) — Full Rect anchor
+├── TopBar (PanelContainer)
+├── MainArea (HBoxContainer)
+│   ├── LeftPanel (PanelContainer)
+│   │   └── [Tabs, BaitShop, BaitBucket, Inventory]
+│   ├── LeftDragHandle (Control)
+│   ├── WaterArea (Control)
+│   │   └── [Canvas, Bobbers, Particles, EventBanners, PatronBubble]
+│   ├── RightDragHandle (Control)
+│   └── RightPanel (PanelContainer)
+│       └── [Upgrades, Gadgets, Spells, PatronEyes]
+└── Overlays (CanvasLayer — layer 10)
+    ├── DescaleScreen
+    ├── CorruptionOverlay
+    ├── DeathScreen
+    └── MainMenuOverlay
+```
+ 
+### Key Node Settings
+- `MainScene` — Anchor preset: Full Rect
+- `MainArea` — Size Flags Vertical: Expand + Fill
+- `LeftPanel` / `RightPanel` — Size Flags Horizontal: Shrink Begin. Custom minimum size x: 44
+- `WaterArea` — Size Flags Horizontal: Expand + Fill
+- `LeftDragHandle` / `RightDragHandle` — Mouse Default Cursor Shape: HSize. Width: 6px
+### Drag Handle Script
+One shared script applied to both handles. Inspector-configurable per instance:
+- `resize_direction: int` — set to 1 on left handle, -1 on right handle
+- `target_panel: NodePath` — points to the panel the handle controls
+- Uses `_gui_input` for press/release detection (fires only when mouse is inside the node)
+- Uses `_process` to apply mouse delta to panel width while dragging
+- Panel width clamped between 44px minimum and 280px maximum
+### Recommended Build Order
+1. Main scene layout and panel skeleton
+2. Bait drag and toss system
+3. Bobber and catch timing rings
+4. Fish and descaling screen
+5. Patron hunger system and tendril overlay
+6. Economy and bait shop
+7. Upgrades, gadgets, and spells
+8. Prestige and meta progression

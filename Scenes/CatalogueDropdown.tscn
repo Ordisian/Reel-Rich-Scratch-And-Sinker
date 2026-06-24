@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://mahlbfw2qx41"]
+
+[ext_resource type="Script" uid="uid://csnbmvy5brdpd" path="res://Scripts/catalogue_dropdown.gd" id="1_qneoh"]
+
+[node name="CatalogueDropdown" type="VBoxContainer" unique_id=942110146]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_qneoh")
+
+[node name="HeaderButton" type="Button" parent="." unique_id=489575893]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Catalogue"
+
+[node name="ContentClip" type="MarginContainer" parent="." unique_id=1334793922]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="RowsRoot" type="Control" parent="ContentClip" unique_id=1032360275]
+layout_mode = 2
+
+[node name="HoverLayer" type="Control" parent="ContentClip/RowsRoot" unique_id=1211719023]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="GridContainer" parent="ContentClip/RowsRoot" unique_id=1095509723]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 1
+size_flags_vertical = 4

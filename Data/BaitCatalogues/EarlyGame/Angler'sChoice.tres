@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="BaitCatalogue" format=3 uid="uid://ciaja8xme5kq5"]
+
+[ext_resource type="Script" uid="uid://4ri86ej7rxdx" path="res://Scripts/Resources/bait_data.gd" id="1_yuw4a"]
+[ext_resource type="Script" uid="uid://brgpmjhmjt86e" path="res://Scripts/Resources/bait_catalogue.gd" id="2_s52m4"]
+
+[sub_resource type="Resource" id="Resource_yuw4a"]
+script = ExtResource("1_yuw4a")
+display_name = "Wiggler"
+cost = 0
+metadata/_custom_type_script = "uid://4ri86ej7rxdx"
+
+[sub_resource type="Resource" id="Resource_s52m4"]
+script = ExtResource("1_yuw4a")
+display_name = "Earthworm"
+catch_type = "Anchovy"
+cost = 5
+metadata/_custom_type_script = "uid://4ri86ej7rxdx"
+
+[sub_resource type="Resource" id="Resource_37tqi"]
+script = ExtResource("1_yuw4a")
+display_name = "Nightcrawler"
+catch_type = "Herring"
+cost = 100000000
+metadata/_custom_type_script = "uid://4ri86ej7rxdx"
+
+[resource]
+script = ExtResource("2_s52m4")
+display_name = "Angler's Choice"
+background_color = null
+border_color = null
+bait_items = Array[ExtResource("1_yuw4a")]([SubResource("Resource_yuw4a"), SubResource("Resource_s52m4"), SubResource("Resource_37tqi")])
+metadata/_custom_type_script = "uid://brgpmjhmjt86e"

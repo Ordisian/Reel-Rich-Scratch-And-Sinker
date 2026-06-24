@@ -4,9 +4,8 @@
 [ext_resource type="Theme" uid="uid://cajti85htyyms" path="res://Assets/Themes/DefaultTheme.tres" id="2_idj7w"]
 [ext_resource type="Script" uid="uid://dum46r5i32bbv" path="res://Scripts/drag_handle.gd" id="3_kln2b"]
 [ext_resource type="Script" uid="uid://cacidywfyojla" path="res://Scripts/Left_Panel_Tabs.gd" id="3_rgh2o"]
-[ext_resource type="Script" uid="uid://b4opr4gcpmivo" path="res://Scripts/catalougue_panel.gd" id="4_v1gob"]
-[ext_resource type="Script" uid="uid://brgpmjhmjt86e" path="res://Scripts/Resources/bait_catalogue.gd" id="5_bmxlf"]
-[ext_resource type="Resource" uid="uid://ciaja8xme5kq5" path="res://Data/BaitCatalogues/EarlyGame/Angler'sChoice.tres" id="6_4kpch"]
+[ext_resource type="Script" uid="uid://csnbmvy5brdpd" path="res://Scripts/catalougue_panel.gd" id="4_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://mahlbfw2qx41" path="res://Scenes/CatalogueDropdown.tscn" id="5_v1gob"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r150o"]
 bg_color = Color(0.11764706, 0.16078432, 0.23137255, 1)
@@ -24,53 +23,13 @@ gradient = SubResource("Gradient_r150o")
 width = 256
 height = 32
 
-[sub_resource type="Gradient" id="Gradient_50glp"]
-offsets = PackedFloat32Array(0, 0.6017316, 1)
-colors = PackedColorArray(0.3180196, 0.31801984, 0.31801975, 1, 0.25565878, 0.25565878, 0.25565878, 1, 0.42195132, 0.22594503, 0.21392646, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idj7w"]
+bg_color = Color(0.1882353, 0.21176471, 0.27058825, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vy5pj"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bmxlf"]
-noise = SubResource("FastNoiseLite_vy5pj")
-color_ramp = SubResource("Gradient_50glp")
-seamless = true
-invert = true
-seamless_blend_skirt = 0.226
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4kpch"]
-texture = SubResource("NoiseTexture2D_bmxlf")
-
-[sub_resource type="Gradient" id="Gradient_vy5pj"]
-offsets = PackedFloat32Array(0, 0.6753247, 0.88744587)
-colors = PackedColorArray(0.5683361, 0.56382513, 0.5576682, 1, 0.2985462, 0.29121593, 0.2812109, 1, 0.42836565, 0.21131197, 4.813075e-08, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bmxlf"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4kpch"]
-noise = SubResource("FastNoiseLite_bmxlf")
-color_ramp = SubResource("Gradient_vy5pj")
-seamless = true
-seamless_blend_skirt = 1.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grg3l"]
-texture = SubResource("NoiseTexture2D_4kpch")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw32o"]
-bg_color = Color(0.19434926, 0.19434929, 0.19434917, 1)
-
-[sub_resource type="Gradient" id="Gradient_jw32o"]
-offsets = PackedFloat32Array(0, 0.38961038, 0.96103895, 1)
-colors = PackedColorArray(0.6378432, 0.6378432, 0.6378431, 1, 0.3982684, 0.3982684, 0.3982684, 1, 0.6597721, 0.2115061, 0.09505951, 1, 0.6686758, 0.531629, 1.92523e-07, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_50glp"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vy5pj"]
-noise = SubResource("FastNoiseLite_50glp")
-color_ramp = SubResource("Gradient_jw32o")
-seamless = true
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bmxlf"]
-texture = SubResource("NoiseTexture2D_vy5pj")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kln2b"]
+bg_color = Color(0.2627451, 0.36862746, 0.6509804, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgh2o"]
 bg_color = Color(0.26132053, 0.369619, 0.6504399, 1)
@@ -182,92 +141,88 @@ theme_override_constants/separation = 0
 
 [node name="LeftPanel" type="PanelContainer" parent="UI/VBoxContainer/MainArea" unique_id=978330481]
 clip_contents = true
-custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_4kpch")
+theme_override_styles/panel = SubResource("StyleBoxFlat_idj7w")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainArea/LeftPanel" unique_id=1059451084]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="TabContainer" type="TabContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer" unique_id=1742322681]
+[node name="TabContainer" type="TabContainer" parent="UI/VBoxContainer/MainArea/LeftPanel" unique_id=1742322681]
 layout_mode = 2
 tab_alignment = 1
 current_tab = 0
 all_tabs_in_front = true
 script = ExtResource("3_rgh2o")
 
-[node name="Fishing" type="VBoxContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer" unique_id=1271376768]
+[node name="Fishing" type="VBoxContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer" unique_id=1271376768]
 layout_mode = 2
-theme_override_constants/separation = 0
 metadata/_tab_index = 0
 
-[node name="BaitShopContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing" unique_id=833418181]
-custom_minimum_size = Vector2(0, 530)
+[node name="BaitShopContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer/Fishing" unique_id=833418181]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_grg3l")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing/BaitShopContainer" unique_id=532201394]
+[node name="CatalouguePanel" type="VBoxContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer/Fishing/BaitShopContainer" unique_id=1843717919]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+script = ExtResource("4_pbw6q")
 
-[node name="CatalouguePanel" type="VBoxContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing/BaitShopContainer/MarginContainer" unique_id=1843717919]
+[node name="Label" type="Label" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer/Fishing/BaitShopContainer/CatalouguePanel" unique_id=1527897364]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("4_v1gob")
-catalogues = Array[ExtResource("5_bmxlf")]([ExtResource("6_4kpch"), ExtResource("6_4kpch"), ExtResource("6_4kpch"), ExtResource("6_4kpch"), ExtResource("6_4kpch")])
-
-[node name="Label" type="Label" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing/BaitShopContainer/MarginContainer/CatalouguePanel" unique_id=1527897364]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_jw32o")
-theme_override_styles/focus = SubResource("StyleBoxFlat_jw32o")
-text = "Bait Shop"
+text = "Bucky's Bait Shop"
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="BaitBucket" type="PanelContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing" unique_id=1209330987]
+[node name="CatalogueDropdown" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer/Fishing/BaitShopContainer/CatalouguePanel" unique_id=942110146 instance=ExtResource("5_v1gob")]
+layout_mode = 2
+
+[node name="CatalogueDropdown2" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer/Fishing/BaitShopContainer/CatalouguePanel" unique_id=187660766 instance=ExtResource("5_v1gob")]
+layout_mode = 2
+
+[node name="CatalogueDropdown3" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer/Fishing/BaitShopContainer/CatalouguePanel" unique_id=2030452319 instance=ExtResource("5_v1gob")]
+layout_mode = 2
+
+[node name="BaitBucket" type="Control" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer/Fishing" unique_id=1702702614]
 custom_minimum_size = Vector2(0, 415)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 10
-theme_override_styles/panel = SubResource("StyleBoxTexture_bmxlf")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing/BaitBucket" unique_id=531816874]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="BaitBucketSlot" type="SubViewportContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing/BaitBucket/MarginContainer" unique_id=1132419342]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SubViewport" type="SubViewport" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing/BaitBucket/MarginContainer/BaitBucketSlot" unique_id=1849743496]
-handle_input_locally = false
-size = Vector2i(390, 390)
-render_target_update_mode = 4
-
-[node name="BucketWorld" type="Node2D" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer/Fishing/BaitBucket/MarginContainer/BaitBucketSlot/SubViewport" unique_id=2110044344]
-
-[node name="Inventory" type="VBoxContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/MarginContainer/TabContainer" unique_id=1877623365]
+[node name="Inventory" type="VBoxContainer" parent="UI/VBoxContainer/MainArea/LeftPanel/TabContainer" unique_id=1877623365]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="LeftDragHandle" type="Control" parent="UI/VBoxContainer/MainArea" unique_id=1990868650]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 10
+script = ExtResource("3_kln2b")
+target_panel = NodePath("../LeftPanel")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/MainArea/LeftDragHandle" unique_id=310670457]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kln2b")
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/MainArea/LeftDragHandle/PanelContainer" unique_id=760704091]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "
+>
+>
+>
+>
+>
+"
 
 [node name="WaterArea" type="Control" parent="UI/VBoxContainer/MainArea" unique_id=437859400]
 layout_mode = 2

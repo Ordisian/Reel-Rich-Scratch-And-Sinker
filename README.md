@@ -184,7 +184,7 @@ Nobody knows what it is. Nobody who's met it has had the luxury of writing it do
 
 It is enormous. It is patient. It finds you deeply, deeply amusing.
 
-It speaks to you like a theater producer watches a one-man show — entertained, a little bored, completely in control. It gave you the power to turn your catches into something worth gambling on not out of generosity — no — but because a well-fed fisherman fishes longer. And the longer you fish, the longer it eats.
+It speaks to you like a theater producer watches a one-man show — entertained, a little bored, completely in control. It gave you the power to turn your catches into something worth gambling on not out of generosity, no, but because a well-fed fisherman fishes longer. And the longer you fish, the longer it eats.
 
 It will remind you of this. Frequently. Dramatically.
 
